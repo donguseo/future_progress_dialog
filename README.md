@@ -26,12 +26,12 @@ Call showDialog method with FutureProgressDialog with message.
 showDialog(context, FutureProgressDialog(future, 'loading...'));
 ```
 
-![Future Progress Dialog](./readme_res/future_progress_dialog.png)
+<img src="./readme_res/future_progress_dialog.png" width=200 />
 
 Or you can show it without message.
 ```dart
 showDialog(context, FutureProgressDialog(future, null));
 ```
 
-![Future Progress Dialog Without Message](./readme_res/future_progress_dialog_without_msg.png)
+<img src="./readme_res/future_progress_dialog_without_msg.png" width=200 />
 
