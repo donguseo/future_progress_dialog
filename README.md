@@ -21,7 +21,17 @@ Import the package in your dart file
 import 'package:future_progress_dialog/future_progress_dialog.dart';
 ```
 
-Call showDialog method with FutureProgressDialog.
+Call showDialog method with FutureProgressDialog with message.
 ```dart
 showDialog(context, FutureProgressDialog(future, 'loading...'));
 ```
+
+![Future Progress Dialog](./readme_res/future_progress_dialog.png)
+
+Or you can show it without message.
+```dart
+showDialog(context, FutureProgressDialog(future, null));
+```
+
+![Future Progress Dialog Without Message](./readme_res/future_progress_dialog_without_msg.png)
+
