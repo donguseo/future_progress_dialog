@@ -10,7 +10,7 @@ FutureProgressDialog start when you call showDialog function, but dismiss automa
 Add the Package
 ```yaml
 dependencies:
-  future_progress_dialog: ^0.0.2
+  future_progress_dialog: ^0.0.3
 ```
 
 ## How to use
