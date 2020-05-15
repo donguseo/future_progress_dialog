@@ -9,7 +9,7 @@ FutureProgressDialog start with showDialog function, but dismiss automatically w
 Add the Package
 ```yaml
 dependencies:
-  progress_dialog: ^0.0.1
+  future_progress_dialog: ^0.0.2
 ```
 
 ## How to use
@@ -17,7 +17,7 @@ dependencies:
 Import the package in your dart file
 
 ```dart
-import 'package:progress_dialog/progress_dialog.dart';
+import 'package:future_progress_dialog/future_progress_dialog.dart';
 ```
 
 Call showDialog method with FutureProgressDialog.
