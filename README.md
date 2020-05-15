@@ -26,7 +26,7 @@ Call showDialog method with FutureProgressDialog with message.
 showDialog(context, FutureProgressDialog(future, 'loading...'));
 ```
 
-<img src="./readme_res/future_progress_dialog.png" width=200 />
+<img src="https://github.com/donguseo/future_progress_dialog/blob/master/readme_res/future_progress_dialog.png?raw=true" width=200 />
 
 Or you can show it without message.
 ```dart
