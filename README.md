@@ -1,6 +1,7 @@
 # future_progress_dialog
 
-FutureProgressDialog start with showDialog function, but dismiss automatically when futre task is finished. 
+future_progress_dialog is a simple progress dialog library for async tasks.
+FutureProgressDialog start when you call showDialog function, but dismiss automatically when future task is finished. 
 
 ## Supported Dart Versions
 **Dart SDK version >= 2.1.0**
