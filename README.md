@@ -33,5 +33,5 @@ Or you can show it without message.
 showDialog(context, FutureProgressDialog(future, null));
 ```
 
-<img src="./readme_res/future_progress_dialog_without_msg.png" width=200 />
+<img src="https://github.com/donguseo/future_progress_dialog/blob/master/readme_res/future_progress_dialog_without_msg.png?raw=true" width=200 />
 
