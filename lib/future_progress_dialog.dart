@@ -32,12 +32,13 @@ class FutureProgressDialog extends StatelessWidget {
       );
     }
     return AlertDialog(
-      content:
-          Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-        CircularProgressIndicator(),
-        SizedBox(width: 20),
-        _buildText(context)
-      ]),
+      content: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(width: 20),
+            _buildText(context)
+          ]),
     );
   }
 
@@ -58,7 +59,6 @@ class FutureProgressDialog extends StatelessWidget {
     );
   }
 }
-
 
 class _CustomProgressWidget extends StatelessWidget {
   const _CustomProgressWidget({
