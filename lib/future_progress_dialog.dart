@@ -20,8 +20,8 @@ class FutureProgressDialog extends StatelessWidget {
 
   /// If you want to use custom progress widget set [progress].
   final Widget progress;
-  
-  /// If you want to use custom message widget set [message].
+
+  /// If you want to use message widget set [message].
   final Widget message;
 
   FutureProgressDialog(
