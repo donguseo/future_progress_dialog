@@ -1,9 +1,36 @@
 import 'package:flutter/material.dart';
 
+const _DefaultDecoration = BoxDecoration(
+  color: Colors.white,
+  shape: BoxShape.rectangle,
+  borderRadius: BorderRadius.all(Radius.circular(10)),
+);
+
+
 class FutureProgressDialog extends StatelessWidget {
+  /// Dialog will be closed when [future] task is finished.
+  @required
   final Future future;
-  final String message;
-  FutureProgressDialog(this.future, this.message);
+
+  /// [BoxDecoration] of [FutureProgressDialog]. 
+  final BoxDecoration decoration;
+
+  /// opacity of [FutureProgressDialog]
+  final double opacity;
+
+  /// If you want to use custom progress widget set [progress].
+  final Widget progress;
+  
+  /// If you want to use custom message widget set [message].
+  final Widget message;
+
+  FutureProgressDialog(
+    this.future, {
+    this.decoration,
+    this.opacity = 1.0,
+    this.progress,
+    this.message,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +51,38 @@ class FutureProgressDialog extends StatelessWidget {
   }
 
   Widget _buildDialog(BuildContext context) {
+    var content;
     if (message == null) {
-      return Dialog(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        child: _CustomProgressWidget(),
+      content = Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          alignment: Alignment.center,
+          decoration: decoration ?? _DefaultDecoration,
+          child: progress ?? CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      content = Container(
+        height: 100,
+        padding: const EdgeInsets.all(20),
+        decoration: decoration ?? _DefaultDecoration,
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          progress ?? CircularProgressIndicator(),
+          SizedBox(width: 20),
+          _buildText(context)
+        ]),
       );
     }
-    return AlertDialog(
-      content: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            CircularProgressIndicator(),
-            SizedBox(width: 20),
-            _buildText(context)
-          ]),
+
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      child: Opacity(
+        opacity: opacity,
+        child: content,
+      ),
     );
   }
 
@@ -48,40 +92,7 @@ class FutureProgressDialog extends StatelessWidget {
     }
     return Expanded(
       flex: 1,
-      child: Text(
-        message,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.grey[600],
-          fontSize: 15,
-        ),
-      ),
-    );
-  }
-}
-
-class _CustomProgressWidget extends StatelessWidget {
-  const _CustomProgressWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Opacity(
-      opacity: 0.6,
-      child: Center(
-        child: Container(
-          height: 100,
-          width: 100,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: CircularProgressIndicator(),
-        ),
-      ),
+      child: message,
     );
   }
 }

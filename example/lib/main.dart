@@ -44,6 +44,12 @@ class ExampleHome extends StatelessWidget {
                   showProgressWithoutMsg(context);
                 },
                 child: Text('Show Progress Dialog Without Message'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  showProgressWithoutMsg(context);
+                },
+                child: Text('Show Progress Dialog with custom progress'),
               )
             ],
           ),
@@ -53,13 +59,13 @@ class ExampleHome extends StatelessWidget {
   Future<void> showProgress(BuildContext context) async {
     var result = await showDialog(
         context: context,
-        child: FutureProgressDialog(getFuture(), 'Loading...'));
+        child: FutureProgressDialog(getFuture(), message: Text('Loading...')));
     showResultDialog(context, result);
   }
 
   Future<void> showProgressWithoutMsg(BuildContext context) async {
     var result = await showDialog(
-        context: context, child: FutureProgressDialog(getFuture(), null));
+        context: context, child: FutureProgressDialog(getFuture()));
     showResultDialog(context, result);
   }
 
