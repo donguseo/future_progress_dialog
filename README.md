@@ -10,7 +10,7 @@ FutureProgressDialog start when you call showDialog function, but dismiss automa
 Add the Package
 ```yaml
 dependencies:
-  future_progress_dialog: ^0.1.1
+  future_progress_dialog: ^0.2.0
 ```
 
 ## How to use
@@ -23,14 +23,22 @@ import 'package:future_progress_dialog/future_progress_dialog.dart';
 
 Call showDialog method with FutureProgressDialog with message.
 ```dart
-showDialog(context, FutureProgressDialog(future, message : Text('loading...')));
+    showDialog(
+      context: context,
+      builder: (context) =>
+          FutureProgressDialog(getFuture(), message: Text('Loading...')),
+    );
 ```
 
 <img src="https://github.com/donguseo/future_progress_dialog/blob/master/readme_res/future_progress_dialog.png?raw=true" width=200 />
 
 Or you can show it without message.
 ```dart
-showDialog(context, FutureProgressDialog(future));
+    await showDialog(
+      context: context,
+      builder: (context) =>
+          FutureProgressDialog(getFuture()),
+    );
 ```
 
 <img src="https://github.com/donguseo/future_progress_dialog/blob/master/readme_res/future_progress_dialog_without_msg.png?raw=true" width=200 />

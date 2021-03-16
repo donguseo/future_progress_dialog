@@ -6,23 +6,22 @@ const _DefaultDecoration = BoxDecoration(
   borderRadius: BorderRadius.all(Radius.circular(10)),
 );
 
-
 class FutureProgressDialog extends StatelessWidget {
   /// Dialog will be closed when [future] task is finished.
   @required
   final Future future;
 
-  /// [BoxDecoration] of [FutureProgressDialog]. 
-  final BoxDecoration decoration;
+  /// [BoxDecoration] of [FutureProgressDialog].
+  final BoxDecoration? decoration;
 
   /// opacity of [FutureProgressDialog]
   final double opacity;
 
   /// If you want to use custom progress widget set [progress].
-  final Widget progress;
+  final Widget? progress;
 
   /// If you want to use message widget set [message].
-  final Widget message;
+  final Widget? message;
 
   FutureProgressDialog(
     this.future, {
@@ -92,7 +91,7 @@ class FutureProgressDialog extends StatelessWidget {
     }
     return Expanded(
       flex: 1,
-      child: message,
+      child: message!,
     );
   }
 }
