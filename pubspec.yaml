@@ -1,10 +1,11 @@
 name: future_progress_dialog
 description: future_progress_dialog is a simple progress dialog library for async tasks. FutureProgressDialog start when you call showDialog function, but dismiss automatically when future task is finished. 
-version: 0.1.1
+version: 0.2.0
 homepage: https://github.com/donguseo/future_progress_dialog
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
+  flutter: ">=2.0.0 <3.0.0"
 
 dependencies:
   flutter:

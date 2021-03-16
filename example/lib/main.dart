@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
 
 void main() => runApp(MyApp());
@@ -33,21 +34,21 @@ class ExampleHome extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   showProgress(context);
                 },
                 child: Text('Show Progress Dialog'),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   showProgressWithoutMsg(context);
                 },
                 child: Text('Show Progress Dialog Without Message'),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
-                  showProgressWithoutMsg(context);
+                  showProgressWithCustomProgress(context);
                 },
                 child: Text('Show Progress Dialog with custom progress'),
               )
@@ -58,30 +59,83 @@ class ExampleHome extends StatelessWidget {
 
   Future<void> showProgress(BuildContext context) async {
     var result = await showDialog(
-        context: context,
-        child: FutureProgressDialog(getFuture(), message: Text('Loading...')));
+      context: context,
+      builder: (context) =>
+          FutureProgressDialog(getFuture(), message: Text('Loading...')),
+    );
     showResultDialog(context, result);
   }
 
   Future<void> showProgressWithoutMsg(BuildContext context) async {
     var result = await showDialog(
-        context: context, child: FutureProgressDialog(getFuture()));
+        context: context,
+        builder: (context) => FutureProgressDialog(getFuture()));
+    showResultDialog(context, result);
+  }
+
+  Future<void> showProgressWithCustomProgress(BuildContext context) async {
+    var result = await showDialog(
+        context: context,
+        builder: (context) => FutureProgressDialog(
+              getFuture(),
+              progress: _CustomProgress(),
+            ));
+
     showResultDialog(context, result);
   }
 
   void showResultDialog(BuildContext context, String result) {
     showDialog(
       context: context,
-      child: AlertDialog(
+      builder: (context) => AlertDialog(
         content: Text(result),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
             child: Text('OK'),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _CustomProgress extends StatefulWidget {
+  const _CustomProgress({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  __CustomProgressState createState() => __CustomProgressState();
+}
+
+class __CustomProgressState extends State<_CustomProgress>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+        value: 0.0, duration: Duration(milliseconds: 1000), vsync: this);
+    controller.repeat();
+  }
+
+  @override
+  void dispose() {
+    if (controller != null) {
+      controller.stop();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: AnimatedIcon(
+        icon: AnimatedIcons.add_event,
+        progress: controller,
       ),
     );
   }
