@@ -14,3 +14,9 @@
  - message
 
 ## [0.1.1] - Add Params
+
+## [0.2.0] - null safety
+
+## [0.2.1] 
+* switch FutureProgressDialog from StatelessWidget to StatefulWidget([#3](https://github.com/donguseo/future_progress_dialog/pull/3))
+    * Thank you [@daniele-athome](https://github.com/daniele-athome)!
