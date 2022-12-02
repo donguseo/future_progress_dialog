@@ -45,6 +45,7 @@ class _FutureProgressDialogState extends State<FutureProgressDialog> {
       Navigator.of(context).pop(val);
     }).catchError((e) {
       Navigator.of(context).pop();
+      throw e;
     });
   }
 
