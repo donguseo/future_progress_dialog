@@ -1,3 +1,11 @@
+## [0.3.0]
+* add cancel support
+    * `cancelLabel`: label of the cancel button shown below the progress indicator
+    * `onCancel`: callback invoked when the cancel button is pressed, before the dialog is closed
+    * pressing cancel closes the dialog with `null`
+* guard against double pop when the dialog is closed before the future completes
+* replace deprecated `WillPopScope` with `PopScope`
+
 ## [0.0.1] - Initial release
 
 ## [0.0.3] - Change Description

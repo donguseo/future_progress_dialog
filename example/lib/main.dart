@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/scheduler/ticker.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
 
 void main() => runApp(MyApp());
@@ -51,6 +50,12 @@ class ExampleHome extends StatelessWidget {
                   showProgressWithCustomProgress(context);
                 },
                 child: Text('Show Progress Dialog with custom progress'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  showProgressWithCancel(context);
+                },
+                child: Text('Show Progress Dialog with cancel'),
               )
             ],
           ),
@@ -84,11 +89,26 @@ class ExampleHome extends StatelessWidget {
     showResultDialog(context, result);
   }
 
-  void showResultDialog(BuildContext context, String result) {
+  Future<void> showProgressWithCancel(BuildContext context) async {
+    var result = await showDialog(
+      context: context,
+      builder: (context) => FutureProgressDialog(
+        getFuture(),
+        message: Text('Loading...'),
+        cancelLabel: 'Cancel',
+        onCancel: () {
+          print('cancel pressed');
+        },
+      ),
+    );
+    showResultDialog(context, result);
+  }
+
+  void showResultDialog(BuildContext context, String? result) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text(result),
+        content: Text(result ?? 'Canceled'),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -104,7 +124,7 @@ class ExampleHome extends StatelessWidget {
 
 class _CustomProgress extends StatefulWidget {
   const _CustomProgress({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -113,7 +133,7 @@ class _CustomProgress extends StatefulWidget {
 
 class __CustomProgressState extends State<_CustomProgress>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
+  late AnimationController controller;
   @override
   void initState() {
     super.initState();
@@ -124,9 +144,7 @@ class __CustomProgressState extends State<_CustomProgress>
 
   @override
   void dispose() {
-    if (controller != null) {
-      controller.stop();
-    }
+    controller.stop();
     super.dispose();
   }
 
