@@ -3,3 +3,6 @@
 .history/
 .dart_tool
 .packages
+build/
+flutter_*.png
+example/ios/Flutter/ephemeral/
